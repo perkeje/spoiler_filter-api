@@ -1,0 +1,19 @@
+#   - Open your Docker Desktop App > Preferences > Resources > Advanced > Increase the memory allocated
+---
+version: '2'
+ 
+ 
+services:
+  postgres:
+    image: postgres
+    restart: always
+    hostname: postgres
+    container_name: spoilers-postgres
+    environment:
+      - POSTGRES_USERNAME=postgres
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_WAL_LEVEL=logical
+    ports: 
+      - "5432:5432"
+ 
