@@ -12,7 +12,9 @@ module.exports.find_by_email = async (email, pool) => {
 
 module.exports.find_by_username = async (username, pool) => {
   try {
-    let user = await pool.query("SELECT * FROM USERS WHERE username=$1", [username]);
+    let user = await pool.query("SELECT * FROM USERS WHERE username=$1", [
+      username,
+    ]);
     return user.rows[0];
   } catch (err) {
     throw Error(err);
