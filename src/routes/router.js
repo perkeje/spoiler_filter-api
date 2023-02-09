@@ -8,7 +8,8 @@ var reviews = require("./app/reviews");
 router.use(cors(
   {
     "origin": "*",
-    "allowedHeaders" : "Authorization, jwt",
+    "allowedHeaders" : "Authorization",
+    "exposedHeaders": "jwt",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   }
 ));
