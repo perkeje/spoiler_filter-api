@@ -17,3 +17,11 @@ services:
     ports: 
       - "5432:5432"
  
+  tensorflow-serving:
+    image: tensorflow/serving
+    ports: 
+      - "8501:8501" 
+    volumes: 
+      - "./models:/models/spoiler_filter_api"
+    environment: 
+      - model_name=spoiler_filter_api
