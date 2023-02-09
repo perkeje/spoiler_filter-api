@@ -1,6 +1,12 @@
 # spoiler_filter-api
 API repository for RUAP spoiler filter project
 
+# [Link na Model](https://drive.google.com/drive/folders/1iSDFu7RyEOu2PCOsWr8TAsMXpbdYcgi8?usp=sharing)
+https://drive.google.com/drive/folders/1iSDFu7RyEOu2PCOsWr8TAsMXpbdYcgi8?usp=sharing <br>
+Zbog prevelike velcine varijabla modela potrebno je skinuti model s ovog linka i zaljepiti ga umjesto modela u repozitoriju ili skinuti samo folder variables i zaljepiti ga u folder model. Nakon toga odvrtiti<br>
+`docker-compose up -d` <br>
+i kontejner s modelom bi trebao biti postavljen.
+
 ## Sam napomena da necete morat vi nista s modelom za prepoznavanje spoilera neg ce sve vec bit ubaceno kad vam kazem pa pullajte, takoder sad morate u requestu za izradu reviewa stavljat flag is_spoiler kao sto je u postmanu, ali to ce sve kasnije bit automatski.
 
 ## Morate imati:
