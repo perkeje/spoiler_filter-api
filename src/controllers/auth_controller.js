@@ -5,7 +5,6 @@ const User = require("../models/user");
 const { generate_access_token } = require("../services/jwt");
 const { create_new_user, find_by_email, find_by_username } = require("../services/auth");
 const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
 
 dotenv.config();
 

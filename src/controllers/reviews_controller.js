@@ -3,6 +3,7 @@ const { validationResult } = require("express-validator");
 const { create, get, show, delete_, update} = require("../services/reviews");
 const { get_paginated } = require("../services/pagination");
 const { config } = require("../configs/pagination.config");
+const { predict } = require("../services/spoiler_model");
 
 module.exports.create_new_review = async (req, res) => {
     try {
@@ -11,7 +12,20 @@ module.exports.create_new_review = async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
       }
       const user = req.user;
-      let review = await create(user.sub, req.body.movie, req.body.review, req.body.is_spoiler,  req.body.grade, pool);
+      let base_url = req.hostname
+      let pred = await predict(req.body.review,base_url ,1)
+      pred = pred.outputs[0][0]
+      console.log(pred);
+      let is_spoiler
+
+      if(pred < 0.4) {
+        is_spoiler = false
+      }
+      else{
+        is_spoiler = true
+      }
+
+      let review = await create(user.sub, req.body.movie, req.body.review, is_spoiler,  req.body.grade, pool);
       return res.status(201).json(review);
     } catch (err) {
       res.status(500).json({ error: err.stack });
@@ -57,11 +71,22 @@ module.exports.create_new_review = async (req, res) => {
         return res.status(422).json({ errors: errors.array() });
       }
 
+      let base_url = req.hostname
+      let pred = await predict(req.body.review,base_url ,1).outputs[0][0]
+      let is_spoiler
+
+      if(pred > 0.4) {
+        is_spoiler = true
+      }
+      else{
+        is_spoiler = false
+      }
+
       const user = req.user;
       let review = await update(
         req.body.movie,
         req.body.review,
-        req.body.is_spoiler,
+        is_spoiler,
         req.body.grade,
         user.sub,
         req.params.id,
