@@ -1,6 +1,6 @@
 #   - Open your Docker Desktop App > Preferences > Resources > Advanced > Increase the memory allocated
 ---
-version: '2'
+version: '3'
  
  
 services:
@@ -24,4 +24,4 @@ services:
     volumes: 
       - "./models:/models/spoiler_filter_api"
     environment: 
-      - model_name=spoiler_filter_api
+      - MODEL_NAME=spoiler_filter_api
