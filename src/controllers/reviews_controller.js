@@ -15,7 +15,6 @@ module.exports.create_new_review = async (req, res) => {
     let base_url = req.hostname;
     let pred = await predict(req.body.review, base_url, 1);
     pred = pred.outputs[0][0];
-    console.log(pred);
     let is_spoiler;
 
     if (pred < 0.4) {
@@ -78,13 +77,14 @@ module.exports.update_review = async (req, res) => {
     }
 
     let base_url = req.hostname;
-    let pred = await predict(req.body.review, base_url, 1).outputs[0][0];
+    let pred = await predict(req.body.review, base_url, 1);
+    pred = pred.outputs[0][0];
     let is_spoiler;
 
-    if (pred > 0.4) {
-      is_spoiler = true;
-    } else {
+    if (pred < 0.4) {
       is_spoiler = false;
+    } else {
+      is_spoiler = true;
     }
 
     const user = req.user;
