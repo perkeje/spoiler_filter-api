@@ -1,8 +1,7 @@
 #   - Open your Docker Desktop App > Preferences > Resources > Advanced > Increase the memory allocated
 ---
 version: '3'
- 
- 
+
 services:
   postgres:
     image: postgres
@@ -14,14 +13,18 @@ services:
       - POSTGRES_PASSWORD=pass
       - POSTGRES_DATABASE=postgres
       - POSTGRES_WAL_LEVEL=logical
-    ports: 
-      - "5432:5432"
- 
+    ports:
+      - '5432:5432'
+
   tensorflow-serving:
-    image: tensorflow/serving
-    ports: 
-      - "8501:8501" 
-    volumes: 
-      - "./models:/models/spoiler_filter_api"
-    environment: 
+    # WINDOWS
+    # image: tensorflow/serving
+
+    # MAC
+    image: emacski/tensorflow-serving:latest
+    ports:
+      - '8501:8501'
+    volumes:
+      - './models:/models/spoiler_filter_api'
+    environment:
       - MODEL_NAME=spoiler_filter_api
