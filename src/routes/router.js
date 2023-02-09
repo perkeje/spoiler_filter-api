@@ -5,7 +5,13 @@ var register = require("./auth/register");
 var login = require("./auth/login");
 var reviews = require("./app/reviews");
 
-router.use(cors());
+router.use(cors(
+  {
+    "origin": "*",
+    "allowedHeaders" : "Authorization, jwt",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  }
+));
 router.use(express.json());
 
 router.get("/", (req, res) => {
