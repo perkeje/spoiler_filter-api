@@ -9,7 +9,7 @@ var predict = require("./app/predict");
 router.use(
   cors({
     origin: "*",
-    allowedHeaders: "Authorization",
+    allowedHeaders: "Authorization, Content-Type",
     exposedHeaders: "jwt",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   })

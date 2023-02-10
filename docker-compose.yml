@@ -18,10 +18,10 @@ services:
 
   tensorflow-serving:
     # WINDOWS
-    # image: tensorflow/serving
+    image: tensorflow/serving
 
     # MAC
-    image: emacski/tensorflow-serving:latest
+    # image: emacski/tensorflow-serving:latest
     ports:
       - '8501:8501'
     volumes:
