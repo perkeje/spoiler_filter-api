@@ -16,8 +16,8 @@ create table reviews
 (
   id varchar(36) default uuid_generate_v4() not null,
   user_id  varchar(36) not null,
-  movie varchar(36) not null,
-  review varchar(256) not null,
+  movie varchar(50) not null,
+  review varchar(1000) not null,
   is_spoiler bool not null,
   grade decimal(3,1) not null,
   created_at timestamptz not null default now(),
