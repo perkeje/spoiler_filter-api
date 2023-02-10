@@ -15,8 +15,8 @@ router.get("/", get_all_reviews_paginated);
 router.use("/", authenticateToken);
 router.post(
   "/",
-  body("movie").notEmpty({ max: 50 , min:1 }),
-  body("review").notEmpty().isLength({ max: 1000, min:5  }),
+  body("movie").notEmpty({ max: 50, min: 1 }),
+  body("review").notEmpty().isLength({ max: 1000, min: 5 }),
   body("grade").notEmpty().isNumeric(),
   create_new_review
 );
@@ -24,8 +24,8 @@ router.get("/list", get_all_users_reviews);
 router.get("/:id", show_review);
 router.put(
   "/:id",
-  body("movie").notEmpty({ max: 50, min:1 }),
-  body("review").notEmpty().isLength({ max: 1000, min:5 }),
+  body("movie").notEmpty({ max: 50, min: 1 }),
+  body("review").notEmpty().isLength({ max: 1000, min: 5 }),
   body("grade").notEmpty().isNumeric(),
   update_review
 );
